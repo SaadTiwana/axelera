@@ -1,5 +1,6 @@
 Note: Information here has been gathered from Axelera help pages, forum posts and also from information shared by the very helpful [Shabaz](https://github.com/shabaz123) .
 
+TODO: Add procedure to switch default user login from firefly to aetina
 
 # Flashing the board
 
@@ -113,7 +114,48 @@ https://support.axelera.ai/hc/en-us/articles/25556514922514-Solving-Storage-Spac
 
 Some commands have been taken from information provided by Shabaz
 
+Insert sdcard, and confirm presence by using command:
+
+`lsblk -f'
+
+The SD card will appear as mmcblk1p1 (or something similar?). In instructions below we will assume it is "mmcblk1p1".
+
+```
+sudo mkfs.ext4 -F -L microsd /dev/mmcblk1p1
+
+cd /mnt
+sudo mkdir microsd
+sudo bash -c "echo \"LABEL=microsd /mnt/microsd ext4 defaults,user,exec,nofail 0 2\" >> /etc/fstab"
+sudo mount /mnt/microsd
+sudo chown aetina:aetina /mnt/microsd
+```
+
+Next, we want to link some of the main folders used by Axelera sdk, etc to the SD card so that the they dont end up using up the EMMC.
+
+First we remove the /axelera folder and recreate as a symbolic link to the SD card
+```
+sudo rm -rf /axelera
+sudo ln -s /mnt/microsd /axelera
+
+```
+
+Next, to prevent Axelera SDk from filling up the /home/aetina/.cache/axelera/data folder, we link it to SD card also
+
+```
+sudo mkdir /mnt/microsd/aetina_cache_axelera
+sudo chmod aetina:aetina /mnt/microsd/aetina_cache_axelera
+
+ln -s /mnt/microsd/aetina_cache_axelera /home/aetina/.cache/axelera
+mkdir /mnt/microsd/aetina_cache_axelera/data
+
+```
+
+
 Setting up SWAP file is also recommended for the 8GB RAM version of the Aetina RK3588 board.
+
+```
+
+```
 
 
 # Install Docker
