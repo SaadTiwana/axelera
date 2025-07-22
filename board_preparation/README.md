@@ -151,9 +151,15 @@ mkdir /mnt/microsd/aetina_cache_axelera/data
 ```
 
 
-Setting up SWAP file is also recommended for the 8GB RAM version of the Aetina RK3588 board.
+Setting up SWAP file is recommended for the 8GB RAM version of the Aetina RK3588 board. (Make sure SD card is inserted in the board)
 
 ```
+sudo dd if=/dev/zero of=/userdata/swapfile bs=1G count=8
+sudo chmod 0600 /userdata/swapfile
+sudo mkswap /userdata/swapfile
+sudo swapon /userdata/swapfile
+
+<incomplete>
 
 ```
 
