@@ -83,10 +83,10 @@ We only need two files:
 >rtw8822c_wow_fw.bin
 
 Alternatively, we can download via wget in terminal (link used are raw/plain file links, which downloads the files correctly):
-'''
+```
 wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw88/rtw8822c_fw.bin
 wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw88/rtw8822c_wow_fw.bin
-'''
+```
 
 Next, with a terminal open in the directory where files were downloaded, run following commands:
 ```
@@ -102,7 +102,7 @@ For more detailed instructions, refer to:
 
 https://github.com/shabaz123/axelera/tree/main/rtw88
 
-
+For this card, I did not have to do anything to get the bluetooth to work - it worked out of the box.
 
 # Set up SD card to extend storage and swap file
 The RK3588 board comes with 32GB of Flash storage. After the ubuntu 22 image is installed on the board it only leaves ~10GB storage available, which is quite small and fills up really quickly. Hence extending it with a fast SD card or a M.2 SSD is very important. 
