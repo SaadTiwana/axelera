@@ -28,13 +28,13 @@ Run following commands to check board is connected and status:
 
 `./upgrade_tool LD` 
 
-Link said it should appear like this:
+Axelera link said it should appear like this, in "Loader" mode:
 
 >List of rockusb connected(1)
 >
 >DevNo=1 Vid=0x2207,Pid=0x350b,LocationID=31     Mode=Loader     SerialNo=1da8b74954605d1d
 
-However, my board was going into Maskrom mode only. However it didn't matter actually. I was able to proceed as normal.
+However, my board was going into "Maskrom" mode only. However it didn't matter actually. I was able to proceed with firmware update.
 
 >List of rockusb connected(1)
 >
@@ -69,9 +69,11 @@ https://github.com/shabaz123/rtl8188eus/blob/master/README.md
 
 Note that speed from this dongle is not great (works on 2.4Ghz only) but ok to get internet quickly.
 
-To get better speed, I installed a RTL8822CE based M.2 card (5.8Ghz+ 2.4Ghz Wifi, Bluetooth) - Thanks to Shabaz for the idea!
+To get better speed, I installed a RTL8822CE based M.2 card (5.8Ghz+ 2.4Ghz Wifi, Bluetooth) on the back side of the board - Credit to Shabaz for the idea!
 
-Download the latest driver files from linux repository (right click, save as):
+The driver for this is available in the "linux-firmware" package inside the linux git. However ,the whole package is more than a GB in size and not suitable to download to an embedded board like this. Instad, we can manually download and install the driver files.
+
+Download the latest driver files from the linux repository (click file name, then download raw/plain - very important to do like this. Right-click->save does not download file correctly):
 
 https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/rtw88
 
@@ -80,14 +82,21 @@ We only need two files:
 >
 >rtw8822c_wow_fw.bin
 
-Next, open terminal in the directory where files were downloaded and run following commands:
+Alternatively, we can download via wget in terminal (link used are raw/plain file links, which downloads the files correctly):
+'''
+wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw88/rtw8822c_fw.bin
+wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw88/rtw8822c_wow_fw.bin
+'''
+
+Next, with a terminal open in the directory where files were downloaded, run following commands:
 ```
 sudo mkdir -p /lib/firmware/rtw88
-sudo mv rtw88*.bin /lib/firmware/rtw88
+sudo mv rtw88*.bin /lib/firmware/rtw88/
 sudo modprobe rtw88_8822ce
-ifconfig -a
+sudo reboot
 ```
-Last command should show the new wifi interface. The wifi should be functioning now and you can search and connect to a network using the toolbar on top-right of Ubuntu GUI.
+
+The wifi card should be functioning now and you can search and connect to a network using the toolbar on top-right of Ubuntu GUI. 
 
 For more detailed instructions, refer to:
 
