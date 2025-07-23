@@ -135,7 +135,8 @@ Next, we want to link some of the main folders used by Axelera sdk, etc to the S
 First we remove the /axelera folder and recreate as a symbolic link to the SD card
 ```
 sudo rm -rf /axelera
-sudo ln -s /mnt/microsd /axelera
+mkdir /mnt/microsd/axelera
+sudo ln -s /mnt/microsd/axelera /axelera
 
 ```
 
@@ -166,7 +167,18 @@ sudo swapon /userdata/swapfile
 
 # Install Docker
 
+Follow the procedure here:
+
+https://docs.docker.com/engine/install/ubuntu/
+
+Use the "Install using the apt repository" method.
 
 
 # Install Voyager SDK
+
+Follow instructions at the Axelera link:
+
+https://github.com/axelera-ai-hub/voyager-sdk/blob/HEAD/docs/tutorials/install.md
+
+# Upgrade M.2 Metis module firmware (if needed)
 
