@@ -151,18 +151,14 @@ mkdir /mnt/microsd/aetina_cache_axelera/data
 
 ```
 
+# Setting up SWAP file
 
-Setting up SWAP file is recommended for the 8GB RAM version of the Aetina RK3588 board. (Make sure SD card is inserted in the board)
+Setting up SWAP file is recommended for the 8GB RAM version of the Aetina RK3588 board. However, I found that the boards shipped by Axelera were the 16GB Aetina RK3588 boards, hence this was not needed. This can be confirmed by typing the following in a console:
 
-```
-sudo dd if=/dev/zero of=/userdata/swapfile bs=1G count=8
-sudo chmod 0600 /userdata/swapfile
-sudo mkswap /userdata/swapfile
-sudo swapon /userdata/swapfile
+`free -h`
 
-<incomplete>
+Look at the 'total' under command output. In my case, it showed "15Gi" which points to it having 16GB RAM.
 
-```
 
 
 # Install Docker
@@ -179,6 +175,15 @@ Use the "Install using the apt repository" method.
 Follow instructions at the Axelera link:
 
 https://github.com/axelera-ai-hub/voyager-sdk/blob/HEAD/docs/tutorials/install.md
+
+Importantly, I changed directory to /axelera before cloning the SDK so that all data is downloaded to the SD card instead of EMMC.
+
+```
+cd /axelera
+<proceed with git clone & installation commands>
+```
+
+Important observation: My experience was that all packages did not get installed the first time I executed the ./install.sh script in Voyager SDK. There were errors about "holding brokend packages". I kept re-executing the install script, and every time it would go further, until finally everything was installed correctly.
 
 # Upgrade M.2 Metis module firmware (if needed)
 
