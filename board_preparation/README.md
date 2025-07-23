@@ -187,3 +187,7 @@ Important observation: My experience was that all packages did not get installed
 
 # Upgrade M.2 Metis module firmware (if needed)
 
+
+# Configure for remote access
+
+In my case my remote access tool of choice is "NoMachine". Go to www.nomachine.com and go to the download page. Choose "NoMachine for ARM". Among the options, under "ARM 64-bit", choose "NoMachine for ARM TAR.GZ (aarch64)". (Architecture can be confirmed by typing `uname -m` in a terminal on the board.
