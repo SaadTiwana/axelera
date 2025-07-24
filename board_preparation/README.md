@@ -187,7 +187,17 @@ Important observation: My experience was that all packages did not get installed
 
 # Upgrade M.2 Metis module firmware (if needed)
 
+<To be updated>
+
+At the time of this writing, the 
 
 # Configure for remote access
 
-In my case my remote access tool of choice is "NoMachine". Go to www.nomachine.com and go to the download page. Choose "NoMachine for ARM". Among the options, under "ARM 64-bit", choose "NoMachine for ARM TAR.GZ (aarch64)". (Architecture can be confirmed by typing `uname -m` in a terminal on the board.
+Remote access is very important for me, and different tools work better/worse on different platforms so I prefer to document this. In my case my remote access tool of choice lately is "NoMachine". Go to www.nomachine.com and navigate to the download page. Choose "NoMachine for ARM". Among the options under "ARM 64-bit", choose "NoMachine for ARM DEB (arm64)". It's very important to select this particular option, since the others did not get installed on the RK3588 board due to one error or other.
+
+Once downloaded, go to Downloads folder and then install (adjust name of .deb file in command below as per actual)
+
+```
+cd ~/Downloads/
+sudo dpkg -i nomachine_XXXXXXXXXXXXXXXX.deb
+```
