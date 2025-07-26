@@ -130,7 +130,7 @@ Some commands have been modified, though.
 
 Insert sdcard, and confirm presence by using command:
 
-`lsblk -f'
+`lsblk -f`
 
 The SD card will appear as mmcblk1p1 (or something similar?). In instructions below we will assume it is "mmcblk1p1".
 
