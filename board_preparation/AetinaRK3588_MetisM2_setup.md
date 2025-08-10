@@ -158,7 +158,7 @@ Next, to prevent Axelera SDk from filling up the /home/aetina/.cache/axelera/dat
 
 ```
 sudo mkdir /mnt/microsd/aetina_cache_axelera
-sudo chmod aetina:aetina /mnt/microsd/aetina_cache_axelera
+sudo chown aetina:aetina /mnt/microsd/aetina_cache_axelera
 
 ln -s /mnt/microsd/aetina_cache_axelera /home/aetina/.cache/axelera
 mkdir /mnt/microsd/aetina_cache_axelera/data
