@@ -186,6 +186,18 @@ https://docs.docker.com/engine/install/ubuntu/
 
 Axelera recommends using the method under "Install using the apt repository" heading on the linked page.
 
+## Resolving ‘you have held broken packages’
+When you start typing the Docker installation steps, you may see a **you have held broken packages** message. The solution is to type the following as a user (e.g. as aetina user), and then you can re-do the Docker installation.
+
+```
+apt-mark showhold | tee ~/apt-holds.backup
+sudo xargs -r apt-mark unhold < ~/apt-holds.backup
+sudo apt update
+sudo apt --fix-broken install
+sudo apt full-upgrade
+rm ~/apt-holds.backup
+```
+
 
 # Install Voyager SDK
 
