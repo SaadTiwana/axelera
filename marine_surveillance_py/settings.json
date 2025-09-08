@@ -1,0 +1,75 @@
+{
+  "uart": {
+    "port": "/dev/ttyUSB0",
+    "baudrate": 115200,
+    "timeout": 1.0
+  },
+  "camera": {
+    "device": "/dev/video20",
+    "resolution": [1920, 1280],
+    "fov_degrees": [8.28, 5.53]
+  },
+  "scan_area": {
+    "azimuth_range": [-55.0, 35.0],
+    "elevation_range": [-7.0, 2.0],
+    "min_overlap_percentage": 0.1,
+    "scan_cycles": 1
+  },
+  "restricted_areas": [
+   {
+     "name": "Sacred Island",
+     "polygon": [
+       [-3.5, -0.5],
+       [11.5, -0.5],
+       [11.5, -4.8],
+       [-3.5, -4.8]
+     ],
+     "warning_threshold_seconds": 0,
+     "classes": ["boat_small", "boat_medium"]
+   },
+   {
+     "name": "Restricted Lane",
+     "polygon": [
+       [-35.0, -5.0],
+       [-35.0, 0.0],
+       [-22.0, 0.0],
+       [-22.0, -5.0]
+     ],
+     "warning_threshold_seconds": 0,
+     "classes": ["boat_small","boat_medium", "ship"]
+   }
+ ],
+  "gimbal": {
+    "move_timeout_seconds": 2.0,
+    "settle_time_seconds": 0.5,
+    "max_retries": 3
+  },
+  "detection": {
+    "model_path": "/axelera/degirum/my-zoo/axelera/",
+    "model_name": "yolo11m_marine_detector_v4--640x640_quant_axelera_metis_2",
+    "confidence_threshold": 0.25,
+    "tile_size": 640,
+    "overlap": 0.1,
+    "use_tiling": true
+  },
+  "logging": {
+    "detections_file": "logs/detections.csv",
+    "images_directory": "logs/images/",
+    "log_level": "INFO"
+  },
+  "audio": {
+    "warning_sound": "sounds/alarm.wav",
+    "device": "bluealsa"
+  },
+  "live_video": {
+    "pip_enabled": true,
+    "pip_zoom_factor": 3.0,
+    "pip_center_percentage": 0.10,
+    "pip_position": "top_middle"
+  },
+  "dataset": {
+    "enabled": true,
+    "save_all_images": false,
+    "folder_path": "logs/dataset/"
+  }
+}

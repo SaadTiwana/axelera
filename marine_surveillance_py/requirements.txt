@@ -1,0 +1,20 @@
+# Core dependencies for Maritime Surveillance System
+opencv-python>=4.11.0
+numpy>=1.24.0
+pyserial>=3.5
+
+# Degirum SDK for AI object detection
+degirum>=0.18.2
+
+# Optional: For advanced image processing
+Pillow>=10.0.0
+
+# Optional: For audio processing (if using advanced audio features)
+pyaudio>=0.2.13
+
+# Optional: For system monitoring
+psutil>=5.9.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
