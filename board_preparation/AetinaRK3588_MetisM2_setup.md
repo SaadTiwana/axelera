@@ -180,11 +180,25 @@ https://support.axelera.ai/hc/en-us/articles/25556440050194-System-Imaging-Guide
 
 # Install Docker
 
-Follow the procedure here:
+Note: Don't install Docker until you've mounted either a microSD card, or M.2 SSD as extra storage, and created /axelera as a symbolic link to that storage. Otherwise, Docker will make use of the SBC's embedded memory, which is insufficient.
+
+Once you have mounted the extra storage and created the /axelera link, follow the procedure here:
 
 https://docs.docker.com/engine/install/ubuntu/
 
 Axelera recommends using the method under "Install using the apt repository" heading on the linked page.
+
+## Resolving ‘you have held broken packages’
+When you start typing the Docker installation steps, you may see a **you have held broken packages** message. The solution is to type the following as a user (e.g. as aetina user), and then you can re-do the Docker installation.
+
+```
+apt-mark showhold | tee ~/apt-holds.backup
+sudo xargs -r apt-mark unhold < ~/apt-holds.backup
+sudo apt update
+sudo apt --fix-broken install
+sudo apt full-upgrade
+rm ~/apt-holds.backup
+```
 
 
 # Install Voyager SDK
