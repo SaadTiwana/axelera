@@ -106,6 +106,7 @@ Next, with a terminal open in the directory where files were downloaded, run fol
 ```
 sudo mkdir -p /lib/firmware/rtw88
 sudo mv rtw88*.bin /lib/firmware/rtw88/
+sudo depmod -a
 sudo modprobe rtw88_8822ce
 sudo reboot
 ```
